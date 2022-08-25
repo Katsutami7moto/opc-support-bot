@@ -16,16 +16,19 @@ logger = logging.getLogger(__name__)
 
 
 def reply(event, vk_api_method, project_id, language_code):
-    vk_api_method.messages.send(
-        user_id=event.user_id,
-        random_id=random.randint(1, 1000),
-        message=reply_by_intent(
-            project_id,
-            event.user_id,
-            event.text,
-            language_code
-        )
+    msg = reply_by_intent(
+        project_id,
+        event.user_id,
+        event.text,
+        language_code,
+        True
     )
+    if msg:
+        vk_api_method.messages.send(
+            user_id=event.user_id,
+            random_id=random.randint(1, 1000),
+            message=msg
+        )
 
 
 def main():

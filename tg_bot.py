@@ -26,7 +26,8 @@ def reply(update: Update, context: CallbackContext):
             context.bot_data.get('project_id'),
             update.message.chat_id,
             update.message.text,
-            context.bot_data.get('language_code')
+            context.bot_data.get('language_code'),
+            False
         )
     )
 
