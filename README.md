@@ -125,6 +125,11 @@ By default, this script assumes the name of the file to be `questions.json`.
 2022-07-25T12:52:43.389877+00:00 heroku[bot.1]: State changed from starting to up
 ```
 
+### Working examples
+
+- [Telegram](https://t.me/game_of_verbs_support_bot)
+- [VK](https://vk.com/im?sel=-215562055)
+
 ### Project Goals
 
 The code is written for educational purposes on online-course for web-developers [dvmn.org](https://dvmn.org/).
