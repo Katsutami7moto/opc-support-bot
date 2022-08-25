@@ -1,8 +1,8 @@
 from google.cloud import dialogflow
 
 
-def reply_by_intent(project_id: str, session_id: str,
-                    message: str, language_code: str, vk: bool):
+def get_reply_by_intent(project_id: str, session_id: str,
+                        message: str, language_code: str, vk: bool):
 
     session_client = dialogflow.SessionsClient()
     session = session_client.session_path(project_id, session_id)
@@ -22,12 +22,9 @@ def reply_by_intent(project_id: str, session_id: str,
         return response.query_result.fulfillment_text
 
 
-def create_intent(
-    project_id: str,
-    display_name: str,
-    training_phrases_parts: list[str],
-    message_texts: list[str]
-) -> dialogflow.Intent:
+def create_intent(project_id: str, display_name: str,
+                training_phrases_parts: list[str],
+                message_texts: list[str]) -> dialogflow.Intent:
 
     intents_client = dialogflow.IntentsClient()
 

@@ -6,7 +6,7 @@ from telegram.ext import (
     Updater, CommandHandler, MessageHandler, Filters, CallbackContext
 )
 
-from dialogflow import reply_by_intent
+from dialogflow import get_reply_by_intent
 
 logging.basicConfig(
     format='%(asctime)s - %(name)s - %(levelname)s - %(message)s',
@@ -22,7 +22,7 @@ def start(update: Update, context: CallbackContext):
 
 def reply(update: Update, context: CallbackContext):
     update.message.reply_text(
-        text=reply_by_intent(
+        text=get_reply_by_intent(
             context.bot_data.get('project_id'),
             update.message.chat_id,
             update.message.text,

@@ -5,7 +5,7 @@ from environs import Env
 import vk_api
 from vk_api.longpoll import VkLongPoll, VkEventType
 
-from dialogflow import reply_by_intent
+from dialogflow import get_reply_by_intent
 
 logging.basicConfig(
     format='%(asctime)s - %(name)s - %(levelname)s - %(message)s',
@@ -16,7 +16,7 @@ logger = logging.getLogger(__name__)
 
 
 def reply(event, vk_api_method, project_id, language_code):
-    msg = reply_by_intent(
+    msg = get_reply_by_intent(
         project_id,
         event.user_id,
         event.text,
