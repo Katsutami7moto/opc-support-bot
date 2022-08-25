@@ -95,7 +95,7 @@ To add new phrases for bots to interact with:
             "Ошибка входа",
             "Не могу войти в аккаунт"
         ],
-        "answer": "Если вы не можете войти на сайт, воспользуйтесь кнопкой «Забыли пароль?» под формой входа. Вам на почту прийдёт письмо с дальнейшими инструкциями. Проверьте папку «Спам», иногда письма попадают в неё."
+        "answer": "Если вы не можете войти на сайт, воспользуйтесь кнопкой «Забыли пароль?» под формой входа. Вам на почту придёт письмо с дальнейшими инструкциями. Проверьте папку «Спам», иногда письма попадают в неё."
     },
     ...
 }
@@ -114,8 +114,9 @@ By default, this script assumes the name of the file to be `questions.json`.
 4. In next points, `opc-support-bot` portion of all links should be changed to the name of Heroku app _**you**_ have created.
 5. [Connect](https://dashboard.heroku.com/apps/opc-support-bot/deploy/github) forked GitHub repository.
 6. Go to [Settings](https://dashboard.heroku.com/apps/opc-support-bot/settings) and set `Config Vars` from previously described environment variables, putting each name to `KEY` and value to `VALUE`, e.g. `TELEGRAM_BOT_TOKEN` to `KEY` and `{telegram_token}` (here it should be without `' '` quotation marks) to `VALUE`.
-7. Go to [Deploy](https://dashboard.heroku.com/apps/opc-support-bot/deploy/github) section, scroll to bottom, to `Manual Deploy`, be sure to choose `main` branch and click `Deploy Branch` button.
-8. Bot should start working and send you a `Bot is running.` message (if you have started the chat with it), but just in case check the [logs](https://dashboard.heroku.com/apps/opc-support-bot/logs) of the app. At the end it should look something like this:
+7. Setup Google Application Credentials as described [here](https://stackoverflow.com/a/56818296), but use [this buildpack](https://github.com/gerynugrh/heroku-google-application-credentials-buildpack) on step 2.
+8. Go to [Deploy](https://dashboard.heroku.com/apps/opc-support-bot/deploy/github) section, scroll to bottom, to `Manual Deploy`, be sure to choose `main` branch and click `Deploy Branch` button.
+9. Bot should start working and send you a `Bot is running.` message (if you have started the chat with it), but just in case check the [logs](https://dashboard.heroku.com/apps/opc-support-bot/logs) of the app. At the end it should look something like this:
 ```
 2022-07-25T12:52:42.000000+00:00 app[api]: Build succeeded
 2022-07-25T12:52:42.153483+00:00 heroku[bot.1]: Stopping all processes with SIGTERM
