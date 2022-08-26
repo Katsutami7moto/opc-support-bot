@@ -17,7 +17,7 @@ def reply(event, vk_api_method, project_id, language_code):
         event.text,
         language_code
     )
-    if is_fallback:
+    if not is_fallback:
         vk_api_method.messages.send(
             user_id=event.user_id,
             random_id=random.randint(1, 1000),
