@@ -2,7 +2,7 @@ from google.cloud import dialogflow
 
 
 def get_reply_by_intent(project_id: str, session_id: str,
-                        message: str, language_code: str, vk: bool):
+                        message: str, language_code: str):
 
     session_client = dialogflow.SessionsClient()
     session = session_client.session_path(project_id, session_id)
@@ -16,10 +16,10 @@ def get_reply_by_intent(project_id: str, session_id: str,
         request={'session': session, 'query_input': query_input}
     )
 
-    if vk and response.query_result.intent.is_fallback:
-        return None
-    else:
-        return response.query_result.fulfillment_text
+    return (
+        response.query_result.intent.is_fallback,
+        response.query_result.fulfillment_text
+    )
 
 
 def create_intent(project_id: str, display_name: str,

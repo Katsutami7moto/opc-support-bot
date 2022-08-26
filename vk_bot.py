@@ -16,18 +16,17 @@ logger = logging.getLogger(__name__)
 
 
 def reply(event, vk_api_method, project_id, language_code):
-    msg = get_reply_by_intent(
+    is_fallback, fulfillment_text = get_reply_by_intent(
         project_id,
         event.user_id,
         event.text,
-        language_code,
-        True
+        language_code
     )
-    if msg:
+    if is_fallback:
         vk_api_method.messages.send(
             user_id=event.user_id,
             random_id=random.randint(1, 1000),
-            message=msg
+            message=fulfillment_text
         )
 
 

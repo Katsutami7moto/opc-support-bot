@@ -21,14 +21,14 @@ def start(update: Update, context: CallbackContext):
 
 
 def reply(update: Update, context: CallbackContext):
+    _, fulfillment_text = get_reply_by_intent(
+        context.bot_data.get('project_id'),
+        update.message.chat_id,
+        update.message.text,
+        context.bot_data.get('language_code')
+    )
     update.message.reply_text(
-        text=get_reply_by_intent(
-            context.bot_data.get('project_id'),
-            update.message.chat_id,
-            update.message.text,
-            context.bot_data.get('language_code'),
-            False
-        )
+        text=fulfillment_text
     )
 
 
