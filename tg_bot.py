@@ -8,11 +8,6 @@ from telegram.ext import (
 
 from dialogflow import get_reply_by_intent
 
-logging.basicConfig(
-    format='%(asctime)s - %(name)s - %(levelname)s - %(message)s',
-    level=logging.INFO
-)
-
 logger = logging.getLogger(__name__)
 
 
@@ -39,6 +34,12 @@ def main():
     project_id = env('PROJECT_ID')
     language_code = env('LANGUAGE_CODE')
 
+    logging.basicConfig(
+        format='%(asctime)s - %(name)s - %(levelname)s - %(message)s',
+        level=logging.INFO
+    )
+    logger.setLevel(logging.INFO)
+
     updater = Updater(bot_token)
 
     dispatcher = updater.dispatcher
@@ -52,6 +53,8 @@ def main():
     dispatcher.add_handler(
         MessageHandler(Filters.text & ~Filters.command, reply)
     )
+
+    logger.info('Telegram bot is running.')
 
     updater.start_polling()
     updater.idle()

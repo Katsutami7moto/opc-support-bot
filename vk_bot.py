@@ -7,11 +7,6 @@ from vk_api.longpoll import VkLongPoll, VkEventType
 
 from dialogflow import get_reply_by_intent
 
-logging.basicConfig(
-    format='%(asctime)s - %(name)s - %(levelname)s - %(message)s',
-    level=logging.INFO
-)
-
 logger = logging.getLogger(__name__)
 
 
@@ -37,9 +32,17 @@ def main():
     project_id = env('PROJECT_ID')
     language_code = env('LANGUAGE_CODE')
 
+    logging.basicConfig(
+        format='%(asctime)s - %(name)s - %(levelname)s - %(message)s',
+        level=logging.INFO
+    )
+    logger.setLevel(logging.INFO)
+
     vk_session = vk_api.VkApi(token=vk_club_token)
     vk_api_method = vk_session.get_api()
     longpoll = VkLongPoll(vk_session)
+
+    logger.info('VK bot is running.')
 
     for event in longpoll.listen():
         if event.type == VkEventType.MESSAGE_NEW and event.to_me:
